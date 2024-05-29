@@ -1,5 +1,7 @@
 extends Node
 
+signal change_level(new_level)
+
 @onready var enet_peer = ENetMultiplayerPeer.new()
 
 func _ready():
@@ -34,6 +36,12 @@ func connection_failed():
 
 func peer_connected(peer_id):
 	print("new peer connected: ", peer_id)
+	if multiplayer.get_unique_id() == 1:
+		_change_level_helper.rpc("landscape_v1")
+
+@rpc("authority", "call_local")
+func _change_level_helper(new_level):
+	change_level.emit(new_level)
 
 func peer_disconnected(peer_id):
 	print("peer disconnected: ", peer_id)
