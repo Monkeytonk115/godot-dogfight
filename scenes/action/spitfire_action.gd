@@ -27,7 +27,7 @@ func _physics_process(delta):
 	#Yaw
 	rotate(transform.basis.y, -input_dir2.x * delta)
 	#Pitch
-	rotate(transform.basis.x, input_dir.y * delta * 1.5)
+	rotate(transform.basis.x, -input_dir.y * delta * 1.5)
 	#Roll
 	rotate(transform.basis.z, -input_dir.x * delta * 2)
 	
