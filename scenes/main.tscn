@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c81g6btiemwrt"]
+[gd_scene load_steps=3 format=3 uid="uid://c81g6btiemwrt"]
 
 [ext_resource type="PackedScene" uid="uid://b8dfkld23uimf" path="res://scenes/interface/multiplayer_menu.tscn" id="1_2fgjb"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_hkna7"]
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_hkna7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

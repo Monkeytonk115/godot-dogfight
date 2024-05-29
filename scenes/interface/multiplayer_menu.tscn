@@ -55,3 +55,6 @@ placeholder_text = "address"
 [node name="NickEntry" type="LineEdit" parent="Container/MarginContainer/VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Player Name"
+
+[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/HostMultiplayer" to="." method="_on_host_multiplayer_pressed"]
+[connection signal="pressed" from="Container/MarginContainer/VBoxContainer/JoinMultiplayer" to="." method="_on_join_multiplayer_pressed"]
