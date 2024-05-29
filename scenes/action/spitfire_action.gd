@@ -6,9 +6,14 @@ const SPEED = 30
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var _transform_renorm = 0
 
 func _physics_process(delta):
-	
+	_transform_renorm += delta
+	if _transform_renorm > 60:
+		transform.basis.orthonormalized()
+		_transform_renorm = 0
+
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("Roll_Left", "Roll_Right", "Pitch_Up", "Pitch_Down")
