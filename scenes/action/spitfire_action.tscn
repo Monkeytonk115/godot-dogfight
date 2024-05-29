@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://buyv8aje4baa5"]
+[gd_scene load_steps=6 format=3 uid="uid://buyv8aje4baa5"]
 
 [ext_resource type="PackedScene" uid="uid://cuasmippqotiu" path="res://scenes/models/spitfire_model.tscn" id="1_4dkbs"]
 [ext_resource type="Script" path="res://scenes/action/spitfire_action.gd" id="1_npr50"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kj863"]
+radius = 1.08775
+height = 9.93202
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ris3p"]
 radius = 1.40709
@@ -23,6 +27,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -4.
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 2.21, 9.5)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(8.74228e-08, -1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -1, 1, 8.74228e-08, 4.37114e-08, 0, -0.361842, -1.07655)
+shape = SubResource("CapsuleShape3D_kj863")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, -0.113, 0.233213)
