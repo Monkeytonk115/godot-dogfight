@@ -3,5 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cuasmippqotiu" path="res://scenes/models/spitfire_model.tscn" id="1_4dkbs"]
 
 [node name="spitfire_action" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="spitfire" parent="." instance=ExtResource("1_4dkbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.978646, -4.075, 0)
