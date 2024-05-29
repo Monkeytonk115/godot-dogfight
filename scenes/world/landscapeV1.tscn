@@ -1,5 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://mdban662i1ym"]
+[gd_scene load_steps=4 format=3 uid="uid://mdban662i1ym"]
 
 [ext_resource type="PackedScene" uid="uid://byu52w4oisdpc" path="res://models/landscapeV1.glb" id="1_ik2f0"]
+[ext_resource type="Texture2D" uid="uid://dmwn5qreeqrrt" path="res://addons/kenney_prototype_textures/green/texture_09.png" id="2_aqtog"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4k1o2"]
+albedo_texture = ExtResource("2_aqtog")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
 
 [node name="landscapeV1" instance=ExtResource("1_ik2f0")]
+
+[node name="Landscape" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4k1o2")
