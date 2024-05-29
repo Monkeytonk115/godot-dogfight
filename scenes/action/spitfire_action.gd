@@ -29,6 +29,8 @@ func _process(delta):
 	$Camera3D.transform.basis = Basis.IDENTITY.rotated(Vector3.UP, 0.25*TAU - free_cam_angle)
 
 func _physics_process(delta):
+	if not is_multiplayer_authority(): return
+
 	_transform_renorm += delta
 	if _transform_renorm > 5:
 		transform.basis.orthonormalized()
@@ -37,7 +39,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("trigger"):
 		var now = Time.get_ticks_msec()
 		if next_fire_time < now:
-			next_fire_time = now + 1000
+			next_fire_time = now + 100
 			for gun in $Guns.get_children():
 				gun.fire()
 
