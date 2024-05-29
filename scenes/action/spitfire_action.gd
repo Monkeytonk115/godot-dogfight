@@ -27,7 +27,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	_transform_renorm += delta
-	if _transform_renorm > 60:
+	if _transform_renorm > 5:
 		transform.basis.orthonormalized()
 		_transform_renorm = 0
 
