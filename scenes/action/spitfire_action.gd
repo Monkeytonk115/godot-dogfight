@@ -8,6 +8,10 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var _transform_renorm = 0
 
+func _ready():
+	if is_multiplayer_authority():
+		$Camera3D.make_current()
+
 func _physics_process(delta):
 	_transform_renorm += delta
 	if _transform_renorm > 60:
