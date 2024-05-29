@@ -3,9 +3,12 @@
 [ext_resource type="Script" path="res://scenes/action/bullet.gd" id="1_6xryj"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ieyht"]
+radius = 0.2
+height = 0.4
 radial_segments = 16
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qy6q4"]
+radius = 0.2
 
 [node name="Bullet" type="RigidBody3D"]
 collision_layer = 2
@@ -16,3 +19,5 @@ mesh = SubResource("SphereMesh_ieyht")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_qy6q4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
