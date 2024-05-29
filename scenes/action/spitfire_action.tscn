@@ -21,6 +21,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [node name="spitfire_action" type="CharacterBody3D"]
+collision_mask = 5
 script = ExtResource("1_npr50")
 
 [node name="spitfire" parent="." instance=ExtResource("1_4dkbs")]

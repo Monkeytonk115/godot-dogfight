@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://2eam14bebvsk"]
+[gd_scene load_steps=3 format=3 uid="uid://2eam14bebvsk"]
 
 [ext_resource type="PackedScene" uid="uid://cf6f5ussu52mg" path="res://scenes/models/low_res_gun.tscn" id="1_a5cd7"]
+[ext_resource type="Script" path="res://scenes/action/gun_action.gd" id="1_xdwjr"]
 
 [node name="Gun_action" type="Node3D"]
+script = ExtResource("1_xdwjr")
 
 [node name="lowResGun" parent="." instance=ExtResource("1_a5cd7")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

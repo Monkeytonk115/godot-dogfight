@@ -31,5 +31,16 @@ func spawn_planes():
 		$players.add_child(new_spitfire, true)
 		new_spitfire.position = Vector3(300, 300 + (hash(peer_id) % 40), 300)
 
+
 func player_change(peer_id, joined):
 	spawn_planes()
+
+
+const bullet = preload("res://scenes/action/bullet.tscn")
+
+@rpc("any_peer", "call_local")
+func shoot_bullet_client(origin : Transform3D, velocity : Vector3):
+	var new_bullet = bullet.instantiate()
+	new_bullet.global_transform = origin
+	new_bullet.linear_velocity = velocity
+	$bullets.add_child(new_bullet, true)

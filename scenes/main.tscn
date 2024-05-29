@@ -13,3 +13,5 @@ script = ExtResource("1_hkna7")
 [node name="world" type="Node3D" parent="."]
 
 [node name="players" type="Node3D" parent="."]
+
+[node name="bullets" type="Node3D" parent="."]

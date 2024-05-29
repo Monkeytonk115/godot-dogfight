@@ -10,9 +10,12 @@ var _transform_renorm = 0
 var free_cam = false
 @export var free_cam_angle = TAU * 0.25
 
+var next_fire_time
+
 func _ready():
 	if is_multiplayer_authority():
 		$Camera3D.make_current()
+	next_fire_time = 0
 
 func _process(delta):
 	free_cam = Input.is_action_pressed("free_cam")
@@ -30,6 +33,13 @@ func _physics_process(delta):
 	if _transform_renorm > 5:
 		transform.basis.orthonormalized()
 		_transform_renorm = 0
+		
+	if Input.is_action_pressed("trigger"):
+		var now = Time.get_ticks_msec()
+		if next_fire_time < now:
+			next_fire_time = now + 1000
+			for gun in $Guns.get_children():
+				gun.fire()
 
 	if not free_cam:
 		# Get the input direction and handle the movement/deceleration.

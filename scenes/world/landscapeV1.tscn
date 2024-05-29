@@ -41,6 +41,8 @@ shadow_enabled = true
 surface_material_override/0 = SubResource("StandardMaterial3D_4k1o2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Landscape" index="0"]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Landscape/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_7sylv")
