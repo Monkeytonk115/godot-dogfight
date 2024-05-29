@@ -9,6 +9,7 @@ script = ExtResource("1_hkna7")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MultiplayerMenu" parent="CanvasLayer" instance=ExtResource("1_2fgjb")]
+visible = false
 
 [node name="world" type="Node3D" parent="."]
 

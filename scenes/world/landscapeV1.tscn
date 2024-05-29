@@ -1,7 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://mdban662i1ym"]
+[gd_scene load_steps=8 format=3 uid="uid://mdban662i1ym"]
 
 [ext_resource type="PackedScene" uid="uid://byu52w4oisdpc" path="res://models/landscapeV1.glb" id="1_ik2f0"]
+[ext_resource type="Texture2D" uid="uid://221yj2nfpl7k" path="res://source/textures/DaySkyHDRI044B_4K-HDR.exr" id="2_1x3c0"]
 [ext_resource type="Texture2D" uid="uid://dmwn5qreeqrrt" path="res://addons/kenney_prototype_textures/green/texture_09.png" id="2_aqtog"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_hf814"]
+panorama = ExtResource("2_1x3c0")
+
+[sub_resource type="Sky" id="Sky_a6lep"]
+sky_material = SubResource("PanoramaSkyMaterial_hf814")
+
+[sub_resource type="Environment" id="Environment_dgfb5"]
+background_mode = 2
+sky = SubResource("Sky_a6lep")
+ambient_light_color = Color(0.498039, 0.498039, 0.498039, 1)
+ambient_light_sky_contribution = 0.0
+reflected_light_source = 2
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4k1o2"]
 albedo_texture = ExtResource("2_aqtog")
@@ -10,5 +26,13 @@ uv1_triplanar = true
 
 [node name="landscapeV1" instance=ExtResource("1_ik2f0")]
 
-[node name="Landscape" parent="." index="0"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_dgfb5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
+transform = Transform3D(-0.421036, -0.434195, 0.796369, 0, 0.877983, 0.478692, -0.907044, 0.201546, -0.369662, 0, 0, 0)
+light_color = Color(1, 1, 0.819608, 1)
+shadow_enabled = true
+
+[node name="Landscape" parent="." index="2"]
 surface_material_override/0 = SubResource("StandardMaterial3D_4k1o2")

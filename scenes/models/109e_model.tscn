@@ -1,5 +1,47 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxqopqffbgywh"]
+[gd_scene load_steps=9 format=3 uid="uid://bxqopqffbgywh"]
 
 [ext_resource type="PackedScene" uid="uid://i0q13tglyvhn" path="res://models/109E.glb" id="1_obi1e"]
+[ext_resource type="Texture2D" uid="uid://dvf60it0ytlmj" path="res://addons/kenney_prototype_textures/purple/texture_09.png" id="2_8c8kl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cu4cv"]
+albedo_texture = ExtResource("2_8c8kl")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67xm6"]
+albedo_texture = ExtResource("2_8c8kl")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agr6m"]
+albedo_texture = ExtResource("2_8c8kl")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kuqjn"]
+albedo_texture = ExtResource("2_8c8kl")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owk05"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vig3"]
+albedo_texture = ExtResource("2_8c8kl")
+uv1_triplanar = true
 
 [node name="109E" instance=ExtResource("1_obi1e")]
+
+[node name="Body" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cu4cv")
+
+[node name="Wings" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_67xm6")
+
+[node name="Horizontal Stabiliser" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_agr6m")
+
+[node name="Cylinder" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_kuqjn")
+
+[node name="Cube" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_owk05")
+
+[node name="Aeleronis" parent="." index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_3vig3")
