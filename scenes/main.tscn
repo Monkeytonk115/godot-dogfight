@@ -13,7 +13,3 @@ script = ExtResource("1_hkna7")
 [node name="world" type="Node3D" parent="."]
 
 [node name="players" type="Node3D" parent="."]
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="players"]
-_spawnable_scenes = PackedStringArray("res://scenes/action/spitfire_action.tscn", "res://scenes/action/109e_action.tscn")
-spawn_path = NodePath("..")
