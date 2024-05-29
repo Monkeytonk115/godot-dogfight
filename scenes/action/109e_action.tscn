@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://yecp6ul5cjld"]
+
+[ext_resource type="PackedScene" uid="uid://bxqopqffbgywh" path="res://scenes/models/109e_model.tscn" id="1_jkxpu"]
+
+[node name="109e_action" type="Node3D"]
+
+[node name="109E" parent="." instance=ExtResource("1_jkxpu")]
