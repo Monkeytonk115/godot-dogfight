@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://buyv8aje4baa5"]
+[gd_scene load_steps=7 format=3 uid="uid://buyv8aje4baa5"]
 
 [ext_resource type="PackedScene" uid="uid://cuasmippqotiu" path="res://scenes/models/spitfire_model.tscn" id="1_4dkbs"]
 [ext_resource type="Script" path="res://scenes/action/spitfire_action.gd" id="1_npr50"]
+[ext_resource type="PackedScene" uid="uid://2eam14bebvsk" path="res://scenes/action/gun_action.tscn" id="3_t27uc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kj863"]
-radius = 1.08775
+radius = 0.946817
 height = 9.93202
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ris3p"]
-radius = 1.40709
+radius = 1.15851
 height = 8.27575
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wkfp2"]
@@ -23,18 +24,45 @@ properties/1/replication_mode = 1
 script = ExtResource("1_npr50")
 
 [node name="spitfire" parent="." instance=ExtResource("1_4dkbs")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -4.075, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 1.6)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 2.21, 9.5)
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 2.21, 11.1)
+current = true
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(8.74228e-08, -1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -1, 1, 8.74228e-08, 4.37114e-08, 0, -0.361842, -1.07655)
+transform = Transform3D(8.74228e-08, -1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -1, 1, 8.74228e-08, 4.37114e-08, 0, -0.190252, -0.664708)
 shape = SubResource("CapsuleShape3D_kj863")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, -0.113, 0.233213)
+transform = Transform3D(1.91069e-15, -4.37114e-08, 1, -1, -4.37114e-08, 0, 4.37114e-08, -1, -4.37114e-08, 0, 0, 0.876)
 shape = SubResource("CapsuleShape3D_ris3p")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_wkfp2")
+
+[node name="Guns" type="Node3D" parent="."]
+
+[node name="Gun_action" parent="Guns" instance=ExtResource("3_t27uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4, -0.58, -0.6)
+
+[node name="Gun_action2" parent="Guns" instance=ExtResource("3_t27uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, -0.55)
+
+[node name="Gun_action3" parent="Guns" instance=ExtResource("3_t27uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, -0.45, -0.5)
+
+[node name="Gun_action4" parent="Guns" instance=ExtResource("3_t27uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.375, -0.4)
+
+[node name="Gun_action5" parent="Guns" instance=ExtResource("3_t27uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4, -0.58, -0.6)
+
+[node name="Gun_action6" parent="Guns" instance=ExtResource("3_t27uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.5, -0.55)
+
+[node name="Gun_action7" parent="Guns" instance=ExtResource("3_t27uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, -0.45, -0.5)
+
+[node name="Gun_action8" parent="Guns" instance=ExtResource("3_t27uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.375, -0.4)
