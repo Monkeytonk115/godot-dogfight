@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+signal crashed
 
 const SPEED = 30
 
@@ -57,4 +58,11 @@ func _physics_process(delta):
 		#Roll
 		rotate(transform.basis.z, -input_dir.x * delta * 2)
 
-	move_and_slide()
+	var collision_info = move_and_collide(velocity * delta)
+	if collision_info:
+		_crashed_helper.rpc()
+
+
+@rpc("authority", "call_local")
+func _crashed_helper():
+	crashed.emit(self, get_multiplayer_authority())
