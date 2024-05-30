@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://yecp6ul5cjld"]
+[gd_scene load_steps=7 format=3 uid="uid://yecp6ul5cjld"]
 
 [ext_resource type="PackedScene" uid="uid://bxqopqffbgywh" path="res://scenes/models/109e_model.tscn" id="1_jkxpu"]
 [ext_resource type="Script" path="res://scenes/action/spitfire_action.gd" id="1_su3t5"]
@@ -12,23 +12,34 @@ height = 8.55182
 radius = 1.03075
 height = 9.76389
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_56han"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="109e_action" type="CharacterBody3D"]
 collision_mask = 5
 script = ExtResource("1_su3t5")
 
 [node name="109E" parent="." instance=ExtResource("1_jkxpu")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.396861, 2.64379)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 2.644)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.0463, 2.45739, -4.39138e-07)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 1.17891, 0.204266, 1.73918)
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -0.006, -0.286719, 1.739)
 shape = SubResource("CapsuleShape3D_y0xuv")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.547383, -0.510402, 0.128397)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.51, 0.128)
 shape = SubResource("CapsuleShape3D_mvoq5")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_56han")
 
 [node name="Guns" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.230786, 0)
