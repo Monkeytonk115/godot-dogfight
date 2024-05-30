@@ -60,6 +60,7 @@ func _physics_process(delta):
 
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info:
+		$MultiplayerSynchronizer.queue_free()
 		_crashed_helper.rpc()
 
 
