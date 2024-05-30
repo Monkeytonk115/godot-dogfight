@@ -47,38 +47,38 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Landscape/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_7sylv")
 
-[node name="Spawn points" type="Node3D" parent="." index="3"]
+[node name="spawn_points" type="Node3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 261.436, 0)
 
-[node name="point_1" type="Marker3D" parent="Spawn points" index="0"]
+[node name="point_1" type="Marker3D" parent="spawn_points" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 750, 0, 0)
 gizmo_extents = 100.0
 
-[node name="point_2" type="Marker3D" parent="Spawn points" index="1"]
+[node name="point_2" type="Marker3D" parent="spawn_points" index="1"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 750, 0, 750)
 gizmo_extents = 100.0
 
-[node name="point_3" type="Marker3D" parent="Spawn points" index="2"]
+[node name="point_3" type="Marker3D" parent="spawn_points" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 750)
 gizmo_extents = 100.0
 
-[node name="point_4" type="Marker3D" parent="Spawn points" index="3"]
+[node name="point_4" type="Marker3D" parent="spawn_points" index="3"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -750, 0, 750)
 gizmo_extents = 100.0
 
-[node name="point_5" type="Marker3D" parent="Spawn points" index="4"]
+[node name="point_5" type="Marker3D" parent="spawn_points" index="4"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -750, 0, 0)
 gizmo_extents = 100.0
 
-[node name="point_6" type="Marker3D" parent="Spawn points" index="5"]
+[node name="point_6" type="Marker3D" parent="spawn_points" index="5"]
 transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -750, 0, -750)
 gizmo_extents = 100.0
 
-[node name="point_7" type="Marker3D" parent="Spawn points" index="6"]
+[node name="point_7" type="Marker3D" parent="spawn_points" index="6"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -750)
 gizmo_extents = 100.0
 
-[node name="point_8" type="Marker3D" parent="Spawn points" index="7"]
+[node name="point_8" type="Marker3D" parent="spawn_points" index="7"]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 750, 0, -750)
 gizmo_extents = 100.0
 

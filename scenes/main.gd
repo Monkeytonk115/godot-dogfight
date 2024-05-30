@@ -39,7 +39,11 @@ func spawn_plane(peer_id):
 	new_spitfire.set_multiplayer_authority(peer_id)
 	new_spitfire.set_name("spitfire" + str(peer_id))
 	$players.add_child(new_spitfire, true)
-	new_spitfire.position = Vector3(300, 300 + (hash(peer_id) % 40), 300)
+	# Choose a spawn point
+	var points = level.get_node("spawn_points").get_children()
+	var point = points[randi_range(0, len(points) - 1)]
+	new_spitfire.position = point.global_position + Vector3(0, (hash(peer_id) % 40), 0)
+	new_spitfire.rotation = point.rotation
 	new_spitfire.crashed.connect(plane_crashed)
 
 
