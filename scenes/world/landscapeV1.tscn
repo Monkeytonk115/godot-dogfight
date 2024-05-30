@@ -81,3 +81,6 @@ gizmo_extents = 100.0
 [node name="point_8" type="Marker3D" parent="Spawn points" index="7"]
 transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 750, 0, -750)
 gizmo_extents = 100.0
+
+[node name="SpectateCamera" type="Camera3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 0.976296, 0.21644, 0, -0.21644, 0.976296, 0, 350, 800)
