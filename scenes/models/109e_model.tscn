@@ -7,22 +7,22 @@
 albedo_texture = ExtResource("2_8c8kl")
 uv1_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67xm6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q8jt7"]
 albedo_texture = ExtResource("2_8c8kl")
 uv1_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agr6m"]
-albedo_texture = ExtResource("2_8c8kl")
-uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kuqjn"]
-albedo_texture = ExtResource("2_8c8kl")
-uv1_triplanar = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owk05"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cbk2"]
 albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vig3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u61o1"]
+albedo_texture = ExtResource("2_8c8kl")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4r5od"]
+albedo_texture = ExtResource("2_8c8kl")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wneiq"]
 albedo_texture = ExtResource("2_8c8kl")
 uv1_triplanar = true
 
@@ -31,17 +31,17 @@ uv1_triplanar = true
 [node name="Body" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_cu4cv")
 
-[node name="Wings" parent="." index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_67xm6")
+[node name="Aeleronis" parent="Body" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_q8jt7")
 
-[node name="Horizontal Stabiliser" parent="." index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_agr6m")
+[node name="Cube" parent="Body" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_0cbk2")
 
-[node name="Cylinder" parent="." index="4"]
-surface_material_override/0 = SubResource("StandardMaterial3D_kuqjn")
+[node name="Cylinder" parent="Body" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_u61o1")
 
-[node name="Cube" parent="." index="5"]
-surface_material_override/0 = SubResource("StandardMaterial3D_owk05")
+[node name="Horizontal Stabiliser" parent="Body" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4r5od")
 
-[node name="Aeleronis" parent="." index="6"]
-surface_material_override/0 = SubResource("StandardMaterial3D_3vig3")
+[node name="Wings" parent="Body" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wneiq")
