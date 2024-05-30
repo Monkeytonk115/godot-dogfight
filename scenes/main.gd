@@ -2,6 +2,7 @@ extends Node3D
 
 const LANDSCAPE_V_1 = preload("res://scenes/world/landscapeV1.tscn")
 const SPITFIRE_ACTION = preload("res://scenes/action/spitfire_action.tscn")
+const _109E_ACTION = preload("res://scenes/action/109e_action.tscn")
 
 var level = null
 
@@ -35,7 +36,7 @@ func spawn_planes():
 
 
 func spawn_plane(peer_id):
-	var new_spitfire = SPITFIRE_ACTION.instantiate()
+	var new_spitfire = [SPITFIRE_ACTION, _109E_ACTION].pick_random().instantiate()
 	new_spitfire.set_multiplayer_authority(peer_id)
 	new_spitfire.set_name("spitfire" + str(peer_id))
 	$players.add_child(new_spitfire, true)
