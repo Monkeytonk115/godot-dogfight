@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 signal crashed
 
-const SPEED = 30
+const SPEED = 100
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -10,6 +10,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var _transform_renorm = 0
 var free_cam = false
 @export var free_cam_angle = TAU * 0.25
+@export var max_engine_power = 760000 #Watts
+@export var take_off_weight = 3048 #Kilograms
+@export var wing_lift = 10
 
 var next_fire_time
 
@@ -49,14 +52,18 @@ func _physics_process(delta):
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var input_dir = Input.get_vector("Roll_Left", "Roll_Right", "Pitch_Up", "Pitch_Down")
 		var input_dir2 = Input.get_vector("Yaw_Left", "Yaw_Right", "ui_up", "ui_down")
-
-		velocity = (transform.basis.z * -SPEED)
 		#Yaw
-		rotate(transform.basis.y, -input_dir2.x * delta)
+		rotate(transform.basis.y, -input_dir2.x * delta * 0.2)
 		#Pitch
-		rotate(transform.basis.x, -input_dir.y * delta * 1.5)
+		rotate(transform.basis.x, -input_dir.y * delta * 0.7)
 		#Roll
-		rotate(transform.basis.z, -input_dir.x * delta * 2)
+		rotate(transform.basis.z, -input_dir.x * delta * 1.5)
+		
+	#forces acting on the plane
+	velocity += (transform.basis.z * -SPEED * delta) #engine thrust
+	velocity += (transform.basis.y * wing_lift * delta) #wing lift
+	velocity += Vector3(0, -gravity * delta, 0) #Gravity
+	velocity *= 0.95
 
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info:
