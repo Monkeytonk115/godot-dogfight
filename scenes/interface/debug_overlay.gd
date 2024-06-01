@@ -42,7 +42,8 @@ var props = []
 
 func add_property(object, property, display):
 	var label = Label.new()
-	label.set("custom_colors/font_color", "#FF0000")
+	label.add_theme_color_override("font_color", Color.LIME)
+	label.add_theme_color_override("font_outline_color", Color.BLACK)
 	$PropertyInspector.add_child(label)
 	props.append(Property.new(object, property, label, display))
 
