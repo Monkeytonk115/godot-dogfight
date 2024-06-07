@@ -55,7 +55,7 @@ func _physics_process(delta):
 		#Yaw
 		rotate(transform.basis.y, -input_dir2.x * delta * 0.2)
 		#Pitch
-		#Clamped input_dir.y to reflect the asymetrical nature of possible G forces
+		#Clamped input_dir.y to reflect the asymmetrical nature of possible G forces
 		rotate(transform.basis.x, clamp(-input_dir.y, -0.25, 1) * delta * 0.7)
 		#Roll
 		rotate(transform.basis.z, -input_dir.x * delta * 1.25)
