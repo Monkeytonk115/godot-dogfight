@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cyx6ym1iut5ap"]
+
+[ext_resource type="Texture2D" uid="uid://b56ojqbhaifpr" path="res://source/textures/spitfire_2a_placeholder.jpg" id="1_jrqaq"]
+
+[resource]
+albedo_texture = ExtResource("1_jrqaq")

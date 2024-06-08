@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuasmippqotiu"]
+[gd_scene load_steps=10 format=3 uid="uid://cuasmippqotiu"]
 
 [ext_resource type="PackedScene" uid="uid://be522sdjo6pkf" path="res://models/spitfire.glb" id="1_d6ov7"]
 [ext_resource type="Script" path="res://scenes/models/spitfire_model.gd" id="2_7webs"]
 [ext_resource type="Texture2D" uid="uid://bf3robuv0ka3a" path="res://addons/kenney_prototype_textures/orange/texture_09.png" id="2_78isk"]
+[ext_resource type="Material" uid="uid://cyx6ym1iut5ap" path="res://materials/spitfire_temp.tres" id="3_o1u7q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2crm5"]
 albedo_texture = ExtResource("2_78isk")
@@ -27,16 +28,20 @@ uv1_triplanar = true
 script = ExtResource("2_7webs")
 
 [node name="Main Fuselage" parent="." index="0"]
+material_override = ExtResource("3_o1u7q")
 surface_material_override/0 = SubResource("StandardMaterial3D_2crm5")
 
 [node name="nose" parent="Main Fuselage" index="0"]
+material_override = ExtResource("3_o1u7q")
 surface_material_override/0 = SubResource("StandardMaterial3D_7l8lg")
 
 [node name="prop" parent="Main Fuselage/nose" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_lqmwm")
 
 [node name="tail piece" parent="Main Fuselage" index="1"]
+material_override = ExtResource("3_o1u7q")
 surface_material_override/0 = SubResource("StandardMaterial3D_1xhqn")
 
 [node name="Wing" parent="Main Fuselage" index="2"]
+material_override = ExtResource("3_o1u7q")
 surface_material_override/0 = SubResource("StandardMaterial3D_6k7v2")

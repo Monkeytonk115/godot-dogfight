@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b56ojqbhaifpr"
-path.s3tc="res://.godot/imported/spitfire_2a_placeholder.jpg-ebf5387cea8bf8bb257152ed4a7ed8cf.s3tc.ctex"
+uid="uid://ddal4uuprpf6r"
+path.s3tc="res://.godot/imported/spitfire_spitfire_2a_placeholder.jpg-8378932142b12495fa0a39fe161abdd4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://source/textures/spitfire_2a_placeholder.jpg"
-dest_files=["res://.godot/imported/spitfire_2a_placeholder.jpg-ebf5387cea8bf8bb257152ed4a7ed8cf.s3tc.ctex"]
+source_file="res://models/spitfire_spitfire_2a_placeholder.jpg"
+dest_files=["res://.godot/imported/spitfire_spitfire_2a_placeholder.jpg-8378932142b12495fa0a39fe161abdd4.s3tc.ctex"]
 
 [params]
 
