@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0hvl2d5y63di"]
+[gd_scene load_steps=3 format=3 uid="uid://c0hvl2d5y63di"]
 
 [ext_resource type="Script" path="res://scenes/interface/debug_overlay.gd" id="1_hei38"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_xlnkh"]
 
 [node name="DebugOverlay" type="MarginContainer"]
 anchors_preset = 15
@@ -12,3 +14,6 @@ script = ExtResource("1_hei38")
 
 [node name="PropertyInspector" type="VBoxContainer" parent="."]
 layout_mode = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("ImmediateMesh_xlnkh")

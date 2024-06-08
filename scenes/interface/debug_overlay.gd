@@ -2,6 +2,8 @@ extends MarginContainer
 
 var _visible = true
 
+var mesh
+
 # https://kidscancode.org/godot_recipes/ui/debug_overlay/
 # A class to contain each of the Properties we want to display
 # in the debug overlay
@@ -70,3 +72,6 @@ func _input(event):
 				show()
 			else:
 				hide()
+
+func _ready():
+	mesh = $MeshInstance3D.mesh

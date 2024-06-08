@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 signal crashed
 
-const SPEED = 100
+@export var SPEED = 100
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -12,7 +12,12 @@ var free_cam = false
 @export var free_cam_angle = TAU * 0.25
 @export var max_engine_power = 760000 #Watts
 @export var take_off_weight = 3048 #Kilograms
-@export var wing_lift = 10
+@export var wing_lift = 3000
+
+var engine_force = Vector3.ZERO
+var air_resistance_force = Vector3.ZERO
+var lift_force = Vector3.ZERO
+var gravity_force = Vector3.ZERO
 
 var next_fire_time
 
@@ -20,6 +25,10 @@ func _ready():
 	if is_multiplayer_authority():
 		$Camera3D.make_current()
 	next_fire_time = 0
+	DebugOverlay.add_property(self, "engine_force", "")
+	DebugOverlay.add_property(self, "air_resistance_force", "")
+	DebugOverlay.add_property(self, "lift_force", "")
+	DebugOverlay.add_property(self, "gravity_force", "")
 
 func _process(delta):
 	free_cam = Input.is_action_pressed("free_cam")
@@ -31,6 +40,33 @@ func _process(delta):
 	
 	$Camera3D.position = 15 * Vector3(cos(free_cam_angle), 0, sin(free_cam_angle))
 	$Camera3D.transform.basis = Basis.IDENTITY.rotated(Vector3.UP, 0.25*TAU - free_cam_angle)
+	
+	var mesh = (DebugOverlay.mesh as ImmediateMesh)
+	mesh.clear_surfaces()
+
+	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+	mesh.surface_set_color(Color.RED)
+	mesh.surface_add_vertex(global_transform.origin)
+	mesh.surface_add_vertex(global_transform.origin + engine_force)
+	mesh.surface_end()
+	
+	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+	mesh.surface_set_color(Color.RED)
+	mesh.surface_add_vertex(global_transform.origin)
+	mesh.surface_add_vertex(global_transform.origin + air_resistance_force)
+	mesh.surface_end()
+	
+	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+	mesh.surface_set_color(Color.RED)
+	mesh.surface_add_vertex(global_transform.origin)
+	mesh.surface_add_vertex(global_transform.origin + lift_force)
+	mesh.surface_end()
+	
+	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+	mesh.surface_set_color(Color.RED)
+	mesh.surface_add_vertex(global_transform.origin)
+	mesh.surface_add_vertex(global_transform.origin + gravity_force)
+	mesh.surface_end()
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
@@ -58,12 +94,14 @@ func _physics_process(delta):
 		rotate(transform.basis.x, -input_dir.y * delta * 0.7)
 		#Roll
 		rotate(transform.basis.z, -input_dir.x * delta * 1.5)
-		
-	#forces acting on the plane
-	velocity += (transform.basis.z * -SPEED * delta) #engine thrust
-	velocity += (transform.basis.y * wing_lift * delta) #wing lift
-	velocity += Vector3(0, -gravity * delta, 0) #Gravity
-	velocity *= 0.95
+
+	# forces acting on the plane
+	engine_force = (transform.basis.z * -SPEED * take_off_weight * delta) # engine thrust
+	air_resistance_force = (-velocity * velocity.length_squared() * 0.5) # air resistance
+	lift_force = (transform.basis.y * wing_lift * delta * (velocity.dot(-transform.basis.z.normalized()))) # wing lift
+	gravity_force = Vector3(0, -gravity * take_off_weight * delta, 0) # Gravity
+
+	velocity += (engine_force + air_resistance_force + lift_force + gravity_force) / take_off_weight
 
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info:
@@ -74,3 +112,7 @@ func _physics_process(delta):
 @rpc("authority", "call_local")
 func _crashed_helper():
 	crashed.emit(self, get_multiplayer_authority())
+	DebugOverlay.remove_property(self, "engine_force")
+	DebugOverlay.remove_property(self, "air_resistance_force")
+	DebugOverlay.remove_property(self, "lift_force")
+	DebugOverlay.remove_property(self, "gravity_force")
