@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 signal crashed
 
-@export var SPEED = 100
+@export var SPEED = 50
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -12,7 +12,7 @@ var free_cam = false
 @export var free_cam_angle = TAU * 0.25
 @export var max_engine_power = 760000 #Watts
 @export var take_off_weight = 3048 #Kilograms
-@export var wing_lift = 3000
+@export var wing_lift = 500
 
 var engine_force = Vector3.ZERO
 var air_resistance_force = Vector3.ZERO
@@ -20,6 +20,9 @@ var lift_force = Vector3.ZERO
 var gravity_force = Vector3.ZERO
 
 var next_fire_time
+
+var angular_velocity = Vector3.ZERO
+var angular_acceleration = Vector3.ZERO
 
 func _ready():
 	if is_multiplayer_authority():
@@ -29,6 +32,7 @@ func _ready():
 	DebugOverlay.add_property(self, "air_resistance_force", "")
 	DebugOverlay.add_property(self, "lift_force", "")
 	DebugOverlay.add_property(self, "gravity_force", "")
+	DebugOverlay.add_property(self, "velocity", "length")
 
 func _process(delta):
 	free_cam = Input.is_action_pressed("free_cam")
@@ -36,7 +40,8 @@ func _process(delta):
 		var cam_input = Input.get_vector("Roll_Left", "Roll_Right", "Pitch_Up", "Pitch_Down")
 		free_cam_angle += cam_input.x * delta
 	else:
-		free_cam_angle = lerpf(free_cam_angle, TAU*0.25, delta)
+		pass
+		#free_cam_angle = lerpf(free_cam_angle, TAU*0.25, delta)
 	
 	$Camera3D.position = 15 * Vector3(cos(free_cam_angle), 0, sin(free_cam_angle))
 	$Camera3D.transform.basis = Basis.IDENTITY.rotated(Vector3.UP, 0.25*TAU - free_cam_angle)
@@ -88,21 +93,31 @@ func _physics_process(delta):
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var input_dir = Input.get_vector("Roll_Left", "Roll_Right", "Pitch_Up", "Pitch_Down")
 		var input_dir2 = Input.get_vector("Yaw_Left", "Yaw_Right", "ui_up", "ui_down")
-		#Yaw
-		rotate(transform.basis.y, -input_dir2.x * delta * 0.2)
-		#Pitch
-		#Clamped input_dir.y to reflect the asymmetrical nature of possible G forces
-		rotate(transform.basis.x, clamp(-input_dir.y, -0.25, 1) * delta * 0.7)
-		#Roll
-		rotate(transform.basis.z, -input_dir.x * delta * 1.25)
+		angular_acceleration = Vector3(
+			#Clamped input_dir.y to reflect the asymmetrical nature of possible G forces
+			clamp(-input_dir.y, -0.25, 1) * delta * 0.7,
+			
+			-input_dir2.x * delta * 0.2,
+			
+			-input_dir.x * delta * 1.25
+		)
 
 	# forces acting on the plane
-	engine_force = (transform.basis.z * -SPEED * take_off_weight * delta) # engine thrust
-	air_resistance_force = (-velocity * velocity.length_squared() * 0.5) # air resistance
-	lift_force = (transform.basis.y * wing_lift * delta * (velocity.dot(-transform.basis.z.normalized()))) # wing lift
-	gravity_force = Vector3(0, -gravity * take_off_weight * delta, 0) # Gravity
+	engine_force = (transform.basis.z * -SPEED * take_off_weight) # engine thrust
+	air_resistance_force = (-velocity * velocity.length_squared()) # air resistance
+	lift_force = (transform.basis.y * wing_lift * (velocity.dot(-transform.basis.z.normalized()))) # wing lift
+	gravity_force = Vector3(0, -gravity * take_off_weight, 0) # Gravity
 
 	velocity += (engine_force + air_resistance_force + lift_force + gravity_force) / take_off_weight
+	angular_velocity += angular_acceleration
+	
+	# Angular damping
+	angular_velocity *= 0.98
+	
+	# Apply angular velocity rotations
+	rotate(transform.basis.y, angular_velocity.y * delta) # Yaw
+	rotate(transform.basis.x, angular_velocity.x * delta) # Pitch
+	rotate(transform.basis.z, angular_velocity.z * delta) # Roll
 
 	var collision_info = move_and_collide(velocity * delta)
 	if collision_info:
@@ -117,3 +132,4 @@ func _crashed_helper():
 	DebugOverlay.remove_property(self, "air_resistance_force")
 	DebugOverlay.remove_property(self, "lift_force")
 	DebugOverlay.remove_property(self, "gravity_force")
+	DebugOverlay.remove_property(self, "velocity")

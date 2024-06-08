@@ -29,8 +29,7 @@ class Property:
 				s += str(p)
 			"length":
 				#print(s)
-				#s += number_format % p.length()
-				pass
+				s += number_format % p.length()
 			"round":
 				match typeof(p):
 					TYPE_INT, TYPE_FLOAT:
