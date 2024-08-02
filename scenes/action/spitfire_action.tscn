@@ -1,8 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://buyv8aje4baa5"]
+[gd_scene load_steps=8 format=3 uid="uid://buyv8aje4baa5"]
 
 [ext_resource type="PackedScene" uid="uid://cuasmippqotiu" path="res://scenes/models/spitfire_model.tscn" id="1_4dkbs"]
 [ext_resource type="Script" path="res://scenes/action/spitfire_action.gd" id="1_npr50"]
 [ext_resource type="PackedScene" uid="uid://2eam14bebvsk" path="res://scenes/action/gun_action.tscn" id="3_t27uc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sume4"]
+font_size = 24
+font_color = Color(0.890196, 0.890196, 0.890196, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kj863"]
 radius = 0.946817
@@ -29,6 +35,16 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 2.21, 11.1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
+
+[node name="Label" type="Label" parent="Camera3D/CanvasLayer"]
+offset_left = 978.0
+offset_top = 1.0
+offset_right = 1126.0
+offset_bottom = 40.0
+label_settings = SubResource("LabelSettings_sume4")
+horizontal_alignment = 2
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
 transform = Transform3D(8.74228e-08, -1, -4.37114e-08, 4.37114e-08, 4.37114e-08, -1, 1, 8.74228e-08, 4.37114e-08, 0, -0.190252, -0.664708)

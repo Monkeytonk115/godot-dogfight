@@ -3,6 +3,9 @@ extends CharacterBody3D
 signal crashed
 
 @export var SPEED = 50
+var TAS = 0
+var old_pos = Vector3(0,0,0)
+var cumulativeTime = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -33,6 +36,10 @@ func _ready():
 	DebugOverlay.add_property(self, "lift_force", "")
 	DebugOverlay.add_property(self, "gravity_force", "")
 	DebugOverlay.add_property(self, "velocity", "length")
+	
+	var old_pos = global_position
+	
+	
 
 func _process(delta):
 	free_cam = Input.is_action_pressed("free_cam")
@@ -87,6 +94,16 @@ func _physics_process(delta):
 			next_fire_time = now + 100
 			for gun in $Guns.get_children():
 				gun.fire()
+				
+	
+	cumulativeTime = cumulativeTime + delta
+	
+	if cumulativeTime > 1.0:
+		TAS = old_pos.distance_to(global_position) * 3.6
+		old_pos = global_position
+		cumulativeTime = 0
+	
+		$Camera3D/CanvasLayer/Label.set_text("TAS: " + str(round(TAS)) + " Km/h")
 
 	if not free_cam:
 		# Get the input direction and handle the movement/deceleration.

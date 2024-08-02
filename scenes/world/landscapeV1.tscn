@@ -38,6 +38,7 @@ light_color = Color(1, 1, 0.819608, 1)
 shadow_enabled = true
 
 [node name="Landscape" parent="." index="2"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_4k1o2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Landscape" index="0"]
@@ -48,7 +49,7 @@ collision_mask = 0
 shape = SubResource("ConcavePolygonShape3D_7sylv")
 
 [node name="spawn_points" type="Node3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 261.436, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2726.12, 0)
 
 [node name="point_1" type="Marker3D" parent="spawn_points" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 750, 0, 0)
@@ -83,4 +84,4 @@ transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107
 gizmo_extents = 100.0
 
 [node name="SpectateCamera" type="Camera3D" parent="." index="4"]
-transform = Transform3D(1, 0, 0, 0, 0.976296, 0.21644, 0, -0.21644, 0.976296, 0, 350, 800)
+transform = Transform3D(1, 0, 0, 0, 0.976296, 0.21644, 0, -0.21644, 0.976296, 0, 2818.86, 800)
